@@ -1,0 +1,98 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "90147090-f421-4ef5-9bb3-3dd5f4108f49": {
+        "id": "90147090-f421-4ef5-9bb3-3dd5f4108f49",
+        "parent": null,
+        "name": "hiru0508_s3buckettest",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "44895288-71d0-4d00-bcf5-a97c3108078d"
+        ],
+        "isRemovable": false,
+        "filePath": "hiru0508_s3buckettest"
+      },
+      "44895288-71d0-4d00-bcf5-a97c3108078d": {
+        "id": "44895288-71d0-4d00-bcf5-a97c3108078d",
+        "parent": "90147090-f421-4ef5-9bb3-3dd5f4108f49",
+        "name": "lambda.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "hiru0508_s3buckettest/lambda.js",
+        "code": "let AWS = require('aws-sdk');\nconst s3 = new AWS.S3();\n\nexports.handler = function (event, context, callback) {\n    s3.listObjects({\n        'Bucket': 'hirudinee0508',\n        'MaxKeys': 10,\n        'Prefix': ''\n    }).promise()\n        .then(data => {\n            console.log(data);           // successful response\n            /*\n            data = {\n                Contents: [\n                    {\n                       ETag: \"\\\"70ee1738b6b21e2c8a43f3a5ab0eee71\\\"\",\n                       Key: \"example1.jpg\",\n                       LastModified: \"<Date Representation>\",\n                       Owner: {\n                          DisplayName: \"myname\",\n                          ID: \"12345example25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc\"\n                       },\n                       Size: 11,\n                       StorageClass: \"STANDARD\"\n                    },\n                    // {...}\n                ]\n            }\n            */\n        })\n        .catch(err => {\n            console.log(err, err.stack); // an error occurred\n        });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": []
+      }
+    },
+    "deletedFiles": [],
+    "rootNode": "90147090-f421-4ef5-9bb3-3dd5f4108f49",
+    "openFiles": [
+      "44895288-71d0-4d00-bcf5-a97c3108078d"
+    ],
+    "currentFileId": "44895288-71d0-4d00-bcf5-a97c3108078d",
+    "resources": {
+      "s3hirudinee0508": {
+        "name": "s3hirudinee0508",
+        "type": "S3",
+        "config": {
+          "mode": 0,
+          "bucket": {
+            "region": "us-east-1",
+            "name": "hirudinee0508"
+          }
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": {}
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "aws-sdk": {
+          "name": "aws-sdk",
+          "language": "javascript",
+          "version": "2.176.0",
+          "dev": true,
+          "notRemovable": false
+        }
+      }
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "hiru0508_s3buckettest",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1564996928342
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "hiru0508_s3buckettest",
+      "url": "https://github.com/HirudineeADRT/hiru0508_s3buckettest",
+      "branches": []
+    }
+  }
+}
